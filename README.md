@@ -28,10 +28,14 @@ or
 {% bilibili %} avCode @ section @ width x height {% endbilibili %}
 ```
 
-> avCode is bilibili video's serial number. Just like this: https://www.bilibili.com/video/av**170001**
+> avCode is bilibili video's serial number. Just like this: https://www.bilibili.com/video/av **170001**
+
 > avCode should be a number. Don't attach "av" to it.
+
 > section is matched video's sub video's serial number.
+
 > width x height is player's size.
+
 > Bilibili supports HTML5 player. It's familar with Linux user.
 
 ### Youku
