@@ -1,0 +1,18 @@
+{
+    "name": "gitbook-plugin-chinese-video",
+    "description": "A plugin for inserting a video ,hosted by Chinese video website, into your web book.",
+    "main": "index.js",
+    "version": "0.1.0",
+    "engines": {
+        "gitbook": ">1.x.x"
+    },
+    "homepage": "https://github.com/yyc12345/gitbook-plugin-chinese-video",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yyc12345/gitbook-plugin-chinese-video.git"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/yyc12345/gitbook-plugin-chinese-video/issues"
+    }
+}
