@@ -8,7 +8,7 @@ Add the below to your `book.json` file, then run `gitbook install` :
 
 ```json
 {
-    "plugins": ["bilibili"]
+    "plugins": ["chinese-video"]
 }
 ```
 

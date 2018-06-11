@@ -57,7 +57,7 @@ module.exports = {
                     + '</div>';
             }
         },
-        iqiqyi: {
+        iqiyi: {
             process: function (block) {
                 var replaced = block.body.trim();
                 var video = replaced;
