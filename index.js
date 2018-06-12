@@ -1,16 +1,18 @@
-//default player 544 x 415
-
 module.exports = {
     blocks: {
         bilibili: {
             process: function (block) {
                 var pair = block.body.trim().split('@');
                 var video = pair[0].trim();
-                var section = pair[1].trim();
+                var section = pair[1].trim() == "" ? 1 : pair[1].trim();
 
-                var size = pair[2].split('x');
-                var width = size[0].trim();
-                var height = size[1].trim();
+                var width = 544;
+                var height = 415;
+                if (pair[2].trim() != "") {
+                    var size = pair[2].split('x');
+                    width = size[0].trim();
+                    height = size[1].trim();
+                }
 
                 var url = "https://www.bilibili.com/video/av" + video + "/?br";
 
@@ -28,9 +30,15 @@ module.exports = {
                 var pair = block.body.trim().split('@');
                 var video = pair[0].trim();
 
-                var size = pair[1].split('x');
-                var width = size[0].trim();
-                var height = size[1].trim()
+                var mode = pair[1].trim() == "" ? "js" : pair[1].trim();
+
+                var width = 544;
+                var height = 415;
+                if (pair[2].trim() != "") {
+                    var size = pair[2].split('x');
+                    width = size[0].trim();
+                    height = size[1].trim();
+                }
 
                 var url = "https://v.youku.com/v_show/id_" + video + ".html/?br";
 
@@ -38,9 +46,16 @@ module.exports = {
                     return '<p><a href="' + url + '">Youku video link</a></p>';
                 }
 
-                return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                    + '<embed src=\'http://player.youku.com/player.php/sid/' + video + '/v.swf\' allowFullScreen=\'true\' quality=\'high\' width=\'' + width + '\' height=\'' + height + '\' align=\'middle\' allowScriptAccess=\'always\' type=\'application/x-shockwave-flash\'></embed>'
-                    + '</div>';
+                if (mode == "js") {
+                    return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
+                        + '<iframe height=' + height + ' width=' + width + ' src=\'https://player.youku.com/embed/' + video + '\' frameborder=0 \'allowfullscreen\'></iframe>'
+                        + '</div>';
+                } else {
+                    return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
+                        + '<embed src=\'https://player.youku.com/player.php/sid/' + video + '/v.swf\' allowFullScreen=\'true\' quality=\'high\' width=\'' + width + '\' height=\'' + height + '\' align=\'middle\' allowScriptAccess=\'always\' type=\'application/x-shockwave-flash\'></embed>'
+                        + '</div>';
+                }
+
             }
         },
         iqiyi: {
@@ -53,19 +68,23 @@ module.exports = {
                     var vid = pair[1].trim();
                     var tvId = pair[2].trim();
 
-                    var showStr = pair[3].trim()
+                    var showStr = pair[3].trim() == "" ? "???" : pair[3].trim();
 
-                    var size = pair[4].split('x');
-                    var width = size[0].trim();
-                    var height = size[1].trim();
+                    var width = 544;
+                    var height = 415;
+                    if (pair[4].trim() != "") {
+                        var size = pair[4].split('x');
+                        width = size[0].trim();
+                        height = size[1].trim();
+                    }
 
-                    var url = "http://www.iqiyi.com/" + showStr + ".html/?br";
+                    var url = "https://www.iqiyi.com/" + showStr + ".html/?br";
                     if (this.generator != "website") {
                         return '<p><a href="' + url + '">Iqiyi video link</a></p>';
                     }
 
                     return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                        + '<iframe src="http://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=' + vid + '&tvId=' + tvId + '&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder="0" allowfullscreen="true" width="' + width + '" height="' + height + '"></iframe>'
+                        + '<iframe src="https://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=' + vid + '&tvId=' + tvId + '&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder="0" allowfullscreen="true" width="' + width + '" height="' + height + '"></iframe>'
                         + '</div>';
 
                 } else {
@@ -74,11 +93,15 @@ module.exports = {
                     var albumId = pair[3].trim();
                     var tvId = pair[4].trim();
 
-                    var size = pair[5].split('x');
-                    var width = size[0].trim();
-                    var height = size[1].trim();
+                    var width = 544;
+                    var height = 415;
+                    if (pair[5].trim() != "") {
+                        var size = pair[5].split('x');
+                        width = size[0].trim();
+                        height = size[1].trim();
+                    }
 
-                    var url = "http://www.iqiyi.com/" + video + ".html/?br";
+                    var url = "https://www.iqiyi.com/" + video + ".html/?br";
                     if (this.generator != "website") {
                         return '<p><a href="' + url + '">Iqiyi video link</a></p>';
                     }

@@ -22,10 +22,12 @@ Currently, This plugin support:
 
 There are each methods which you should use to insert matched website's video.
 
+Tip: **\[xxx\]** is optional parameter. You can ignore it but don't ignore any **@**.
+
 ### Bilibili
 
 ```
-{% bilibili %} avCode @ section @ width x height {% endbilibili %}
+{% bilibili %} avCode @ [section] @ [width x height] {% endbilibili %}
 ```
 
 HTML5 player. Support HTTPS.
@@ -41,10 +43,12 @@ width x height is player's size.
 ### Youku
 
 ```
-{% youku %} videoCode @ width x height {% endyouku %}
+{% youku %} videoCode @ [mode] @ [width x height] {% endyouku %}
 ```
 
-Flash player. Don't support HTTPS.
+Flash and HTML5 player. Support HTTPS.
+
+mode is player's mode. js(html5) or flash.
 
 videoCode just like this: https://v.youku.com/v_show/id_ **XNDU4MjQ3MzA0** .html
 
@@ -54,12 +58,12 @@ width x height is player's size.
 
 ~~Iqiyi's parameter just like shit!!!~~
 
-Flash and HTML5 player. Don't support HTTPS.
+Flash and HTML5 player. Support HTTPS except flash player.
 
 #### Flash player
 
 ```
-{% iqiyi %} flash @ parameter1 @ video @ albumId @ tvId @ width x height {% endiqiyi %}
+{% iqiyi %} flash @ parameter1 @ video @ albumId @ tvId @ [width x height] {% endiqiyi %}
 ```
 
 **flash** is key word. Don't change it.
@@ -83,10 +87,12 @@ For this content:
 #### HTML5 player
 
 ```
-{% iqiyi %} js @ vid @ tvId @ width x height {% endiqiyi %}
+{% iqiyi %} js @ vid @ tvId @ [showStr] @ [width x height] {% endiqiyi %}
 ```
 
 **js** is key word. Don't change it.
+
+**showStr** only be showed when you don't use web book. It equal with flash player's parameter called **video**.
 
 You only can visit Iqiyi's video's Sharing page and copy its HTML to get these parameters. It just like this:
 
