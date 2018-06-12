@@ -14,19 +14,21 @@ Add the below to your `book.json` file, then run `gitbook install` :
 
 ## Usage
 
-Currently, This plugin support Bilibili, Youku and Iqiyi video.
+Currently, This plugin support:
+
+* Bilibili
+* Youku
+* Iqiyi
 
 There are each methods which you should use to insert matched website's video.
 
 ### Bilibili
 
 ```
-{% bilibili %} avCode {% endbilibili %}
-
-or
-
 {% bilibili %} avCode @ section @ width x height {% endbilibili %}
 ```
+
+HTML5 player. Support HTTPS.
 
 avCode is bilibili video's serial number. Just like this: https://www.bilibili.com/video/av **170001**
 
@@ -36,31 +38,31 @@ section is matched video's sub video's serial number.
 
 width x height is player's size.
 
-Bilibili supports HTML5 player. It's familar with Linux user.
-
 ### Youku
 
 ```
-{% youku %} videoCode {% endyouku %}
-
-or
-
 {% youku %} videoCode @ width x height {% endyouku %}
 ```
+
+Flash player. Don't support HTTPS.
 
 videoCode just like this: https://v.youku.com/v_show/id_ **XNDU4MjQ3MzA0** .html
 
 width x height is player's size.
 
-Only Flash player
-
 ### Iqiyi
 
 ~~Iqiyi's parameter just like shit!!!~~
 
+Flash and HTML5 player. Don't support HTTPS.
+
+#### Flash player
+
 ```
-{% iqiyi %} parameter1 @ video @ albumId @ tvId @ width x height {% endiqiyi %}
+{% iqiyi %} flash @ parameter1 @ video @ albumId @ tvId @ width x height {% endiqiyi %}
 ```
+
+**flash** is key word. Don't change it.
 
 You only can visit Iqiyi's video's Sharing page and copy its HTML to get these parameters. It just like this:
 
@@ -78,4 +80,24 @@ For this content:
 
 **6462528409** is tvId
 
-~~Iqiyi's parameter just like shit!!!~~
+#### HTML5 player
+
+```
+{% iqiyi %} js @ vid @ tvId @ width x height {% endiqiyi %}
+```
+
+**js** is key word. Don't change it.
+
+You only can visit Iqiyi's video's Sharing page and copy its HTML to get these parameters. It just like this:
+
+```
+<iframe src="http://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=1bba1b2ae1e248fdf316c6925eb4d5a2&tvId=6462528409&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder="0" allowfullscreen="true" width="100%" height="100%"></iframe>
+```
+
+For this content:
+
+**1bba1b2ae1e248fdf316c6925eb4d5a2** is vid.
+
+**6462528409** is tvId
+
+## Screenshot
