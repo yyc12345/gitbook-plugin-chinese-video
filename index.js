@@ -1,4 +1,53 @@
 module.exports = {
+    hooks: {
+        "page": function (page) {
+            var scriptStr = "";
+
+            var baseNumber = 1;
+
+            var ifTest = /<iframe plugin-width="\S+" plugin-height="\S+" name="\S+"/g;
+            var emTest = /<embed plugin-width="\S+" plugin-height="\S+" name="\S+"/g;
+
+            var res = page.content.match(ifTest);
+            if (ifTest.test(page.content)) {
+                var yyc = res.length;
+                for (yyc1 = 0; yyc1 < yyc; yyc1++) {
+                    var cache = res[yyc1].split(' ');
+
+                    var name = (cache[3].trim().split('=')[1]).trim().replace(/"/g, '');
+                    var width = (cache[1].trim().split('=')[1]).trim().replace(/"/g, '');
+                    var height = (cache[2].trim().split('=')[1]).trim().replace(/"/g, '');
+
+                    scriptStr = scriptStr + 'var value' + baseNumber + 'Width=globalWidth;var value' + baseNumber + '=(document.getElementsByName("' + name + '"))[0];if(value' + baseNumber + 'Width>' + width + '){value' + baseNumber + 'Width=' + width + ';};value' + baseNumber + '.style.width=value' + baseNumber + 'Width+"px";value' + baseNumber + '.style.height=(' + height + '/' + width + ')*value' + baseNumber + 'Width+"px";'
+                    baseNumber++;
+                };
+            };
+
+            var res2 = page.content.match(emTest);
+            if (emTest.test(page.content)) {
+                var yyc3 = res2.length;
+                for (yyc2 = 0; yyc2 < yyc3; yyc2++) {
+                    var cache = res2[yyc2].split(' ');
+
+                    var name = (cache[3].trim().split('=')[1]).trim().replace(/"/g, '');
+                    var width = (cache[1].trim().split('=')[1]).trim().replace(/"/g, '');
+                    var height = (cache[2].trim().split('=')[1]).trim().replace(/"/g, '');
+
+                    scriptStr = scriptStr + 'var value' + baseNumber + 'Width=globalWidth;var value' + baseNumber + '=(document.getElementsByName("' + name + '"))[0];if(value' + baseNumber + 'Width>' + width + '){value' + baseNumber + 'Width=' + width + ';};value' + baseNumber + '.style.width=value' + baseNumber + 'Width+"px";value' + baseNumber + '.style.height=(' + height + '/' + width + ')*value' + baseNumber + 'Width+"px";'
+                    baseNumber++;
+                };
+            };
+
+            if (scriptStr != "") {
+                scriptStr = "var fc=function(){var globalWidth=document.body.clientWidth-16;" + scriptStr + '};window.onload=fc;window.onresize=fc;';
+
+                //replace
+                page.content = page.content + "<script>" + scriptStr + "</script>";
+            };
+
+            return page;
+        }
+    },
     blocks: {
         bilibili: {
             process: function (block) {
@@ -20,9 +69,7 @@ module.exports = {
                     return '<p><a href="' + url + '">Bilibili video link</a></p>';
                 }
 
-                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                    + '<iframe height="100%" width="100%" src="https://player.bilibili.com/player.html?aid=' + video + '&page=' + section + '" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
-                    + '</div>';
+                return '<iframe plugin-width="' + width + '" plugin-height="' + height + '" name="bilibili-' + video + '" style="margin-top: 20px;margin-bottom: 20px;" src="https://player.bilibili.com/player.html?aid=' + video + '&page=' + section + '" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>';
             }
         },
         youku: {
@@ -47,13 +94,9 @@ module.exports = {
                 }
 
                 if (mode == "js") {
-                    return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                        + '<iframe height=100% width=100% src=\'https://player.youku.com/embed/' + video + '\' frameborder=0 \'allowfullscreen\'></iframe>'
-                        + '</div>';
+                    return '<iframe plugin-width="' + width + '" plugin-height="' + height + '" name="youku-js-' + video + '" style="margin-top: 20px;margin-bottom: 20px;" src=\'https://player.youku.com/embed/' + video + '\' frameborder=0 \'allowfullscreen\'></iframe>';
                 } else {
-                    return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                        + '<embed src=\'https://player.youku.com/player.php/sid/' + video + '/v.swf\' allowFullScreen=\'true\' quality=\'high\' width=\'100%\' height=\'100%\' align=\'middle\' allowScriptAccess=\'always\' type=\'application/x-shockwave-flash\'></embed>'
-                        + '</div>';
+                    return '<embed plugin-width="' + width + '" plugin-height="' + height + '" name="youku-flash-' + video + '" src=\'https://player.youku.com/player.php/sid/' + video + '/v.swf\' allowFullScreen=\'true\' quality=\'high\' align=\'middle\' allowScriptAccess=\'always\' type=\'application/x-shockwave-flash\'></embed>';
                 }
 
             }
@@ -83,9 +126,7 @@ module.exports = {
                         return '<p><a href="' + url + '">Iqiyi video link</a></p>';
                     }
 
-                    return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                        + '<iframe src="https://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=' + vid + '&tvId=' + tvId + '&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder="0" allowfullscreen="true" width="100%" height="100%"></iframe>'
-                        + '</div>';
+                    return '<iframe plugin-width="' + width + '" plugin-height="' + height + '" name="iqiyi-js-' + vid + '" style="margin-top: 20px;margin-bottom: 20px;" src="https://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=' + vid + '&tvId=' + tvId + '&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder="0" allowfullscreen="true"></iframe>';
 
                 } else {
                     var parameter1 = pair[1].trim();
@@ -106,9 +147,7 @@ module.exports = {
                         return '<p><a href="' + url + '">Iqiyi video link</a></p>';
                     }
 
-                    return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                        + '<embed src="http://player.video.qiyi.com/' + parameter1 + '/0/0/' + video + '.swf-albumId=' + albumId + '-tvId=' + tvId + '-isPurchase=0-cnId=8" allowFullScreen="true" quality="high" width="100%" height="100%" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
-                        + '</div>';
+                    return '<embed plugin-width="' + width + '" plugin-height="' + height + '" name="iqiyi-flash-' + vid + '" style="margin-top: 20px;margin-bottom: 20px;" src="http://player.video.qiyi.com/' + parameter1 + '/0/0/' + video + '.swf-albumId=' + albumId + '-tvId=' + tvId + '-isPurchase=0-cnId=8" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
 
                 }
             }
@@ -131,9 +170,7 @@ module.exports = {
                 if (this.generator != "website") {
                     return '<p><a href="' + url + '">QQ video link</a></p>';
                 }
-                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                    + '<iframe frameborder="0" width="100%" height="100%" src="https://v.qq.com/iframe/player.html?vid=' + video + '&tiny=0&auto=0" allowfullscreen></iframe>'
-                    + '</div>';
+                return '<iframe plugin-width="' + width + '" plugin-height="' + height + '" name="qq-' + video + '" style="margin-top: 20px;margin-bottom: 20px;" frameborder="0" src="https://v.qq.com/iframe/player.html?vid=' + video + '&tiny=0&auto=0" allowfullscreen></iframe>';
 
             }
         },
@@ -158,9 +195,7 @@ module.exports = {
                     return '<p><a href="' + url + '">Sohu video link</a></p>';
                 }
 
-                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                    + '<iframe frameborder="0" width="100%" height="100%" src="https://tv.sohu.com/upload/static/share/share_play.html#' + video + '"></iframe>'
-                    + '</div>';
+                return '<iframe plugin-width="' + width + '" plugin-height="' + height + '" name="sohu-' + video + '" style="margin-top: 20px;margin-bottom: 20px;" frameborder="0" src="https://tv.sohu.com/upload/static/share/share_play.html#' + video + '"></iframe>';
 
             }
         },
@@ -185,9 +220,7 @@ module.exports = {
                     return '<p><a href="' + url + '">Mgtv video link</a></p>';
                 }
 
-                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                    + '<embed src="https://player.mgtv.com/mgtv_v5_main/main.swf?play_type=1&video_id=' + video + '" allowFullScreen="true" quality="high" width="100%" height="100%" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
-                    + '</div>';
+                return '<embed plugin-width="' + width + '" plugin-height="' + height + '" name="mgtv-' + video + '" style="margin-top: 20px;margin-bottom: 20px;" src="https://player.mgtv.com/mgtv_v5_main/main.swf?play_type=1&video_id=' + video + '" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
 
             }
         },
@@ -209,9 +242,7 @@ module.exports = {
                     return '<p><a href="' + url + '">PPTV video link</a></p>';
                 }
 
-                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                    + '<embed src="http://player.pptv.com/v/' + video + '.swf" quality="high" width="100%" height="100%" bgcolor="#000" align="middle" allowScriptAccess="always" allownetworking="all" allowfullscreen="true" type="application/x-shockwave-flash" wmode="direct" />'
-                    + '</div>';
+                return '<embed plugin-width="' + width + '" plugin-height="' + height + '" name="pp-' + video + '" style="margin-top: 20px;margin-bottom: 20px;" src="http://player.pptv.com/v/' + video + '.swf" quality="high" bgcolor="#000" align="middle" allowScriptAccess="always" allownetworking="all" allowfullscreen="true" type="application/x-shockwave-flash" wmode="direct" />';
             }
         },
         acfun: {
@@ -232,9 +263,7 @@ module.exports = {
                     return '<p><a href="' + url + '">Acfun video link</a></p>';
                 }
 
-                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
-                    + '<iframe style="width: 100%;height: 100%;" src="http://cdn.aixifan.com/player/ACFlashPlayer.out.swf?vid=' + vid + '&ref=' + url + '" id="ACFlashPlayer-re" frameborder="0"></iframe>'
-                    + '</div>';
+                return '<iframe plugin-width="' + width + '" plugin-height="' + height + '" name="acfun-' + vid + '" style="margin-top: 20px;margin-bottom: 20px;" src="http://cdn.aixifan.com/player/ACFlashPlayer.out.swf?vid=' + vid + '&ref=' + url + '" id="ACFlashPlayer-re" frameborder="0"></iframe>';
 
             }
         },

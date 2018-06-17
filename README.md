@@ -27,7 +27,10 @@ Currently, This plugin support:
 
 There are each methods which you should use to insert matched website's video.
 
-Tip: **\[xxx\]** is optional parameter. You can ignore it but don't ignore any **@**.
+Tips:   
+* **\[xxx\]** is optional parameter. You can ignore it but don't ignore any **@**.
+* The width x height, which is defined by you, is the largest size of the player and if you have a small screen to look through the page, Page will zoom the player with the scale of your width x height.
+
 
 ### Bilibili
 ![html5](html5.png) ![https](https.png)
