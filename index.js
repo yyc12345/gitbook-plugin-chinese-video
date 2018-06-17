@@ -20,8 +20,8 @@ module.exports = {
                     return '<p><a href="' + url + '">Bilibili video link</a></p>';
                 }
 
-                return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                    + '<iframe height="' + height + '" width="' + width + '" src="https://player.bilibili.com/player.html?aid=' + video + '&page=' + section + '" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
+                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                    + '<iframe height="100%" width="100%" src="https://player.bilibili.com/player.html?aid=' + video + '&page=' + section + '" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
                     + '</div>';
             }
         },
@@ -47,12 +47,12 @@ module.exports = {
                 }
 
                 if (mode == "js") {
-                    return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                        + '<iframe height=' + height + ' width=' + width + ' src=\'https://player.youku.com/embed/' + video + '\' frameborder=0 \'allowfullscreen\'></iframe>'
+                    return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                        + '<iframe height=100% width=100% src=\'https://player.youku.com/embed/' + video + '\' frameborder=0 \'allowfullscreen\'></iframe>'
                         + '</div>';
                 } else {
-                    return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                        + '<embed src=\'https://player.youku.com/player.php/sid/' + video + '/v.swf\' allowFullScreen=\'true\' quality=\'high\' width=\'' + width + '\' height=\'' + height + '\' align=\'middle\' allowScriptAccess=\'always\' type=\'application/x-shockwave-flash\'></embed>'
+                    return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                        + '<embed src=\'https://player.youku.com/player.php/sid/' + video + '/v.swf\' allowFullScreen=\'true\' quality=\'high\' width=\'100%\' height=\'100%\' align=\'middle\' allowScriptAccess=\'always\' type=\'application/x-shockwave-flash\'></embed>'
                         + '</div>';
                 }
 
@@ -83,8 +83,8 @@ module.exports = {
                         return '<p><a href="' + url + '">Iqiyi video link</a></p>';
                     }
 
-                    return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                        + '<iframe src="https://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=' + vid + '&tvId=' + tvId + '&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder="0" allowfullscreen="true" width="' + width + '" height="' + height + '"></iframe>'
+                    return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                        + '<iframe src="https://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=' + vid + '&tvId=' + tvId + '&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder="0" allowfullscreen="true" width="100%" height="100%"></iframe>'
                         + '</div>';
 
                 } else {
@@ -106,8 +106,8 @@ module.exports = {
                         return '<p><a href="' + url + '">Iqiyi video link</a></p>';
                     }
 
-                    return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                        + '<embed src="http://player.video.qiyi.com/' + parameter1 + '/0/0/' + video + '.swf-albumId=' + albumId + '-tvId=' + tvId + '-isPurchase=0-cnId=8" allowFullScreen="true" quality="high" width="' + width + '" height="' + height + '" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
+                    return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                        + '<embed src="http://player.video.qiyi.com/' + parameter1 + '/0/0/' + video + '.swf-albumId=' + albumId + '-tvId=' + tvId + '-isPurchase=0-cnId=8" allowFullScreen="true" quality="high" width="100%" height="100%" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
                         + '</div>';
 
                 }
@@ -131,8 +131,8 @@ module.exports = {
                 if (this.generator != "website") {
                     return '<p><a href="' + url + '">QQ video link</a></p>';
                 }
-                return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                    + '<iframe frameborder="0" width="' + width + '" height="' + height + '" src="https://v.qq.com/iframe/player.html?vid=' + video + '&tiny=0&auto=0" allowfullscreen></iframe>'
+                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                    + '<iframe frameborder="0" width="100%" height="100%" src="https://v.qq.com/iframe/player.html?vid=' + video + '&tiny=0&auto=0" allowfullscreen></iframe>'
                     + '</div>';
 
             }
@@ -158,8 +158,8 @@ module.exports = {
                     return '<p><a href="' + url + '">Sohu video link</a></p>';
                 }
 
-                return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                    + '<iframe frameborder="0" width="' + width + '" height="' + height + '" src="https://tv.sohu.com/upload/static/share/share_play.html#' + video + '"></iframe>'
+                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                    + '<iframe frameborder="0" width="100%" height="100%" src="https://tv.sohu.com/upload/static/share/share_play.html#' + video + '"></iframe>'
                     + '</div>';
 
             }
@@ -185,8 +185,8 @@ module.exports = {
                     return '<p><a href="' + url + '">Mgtv video link</a></p>';
                 }
 
-                return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                    + '<embed src="https://player.mgtv.com/mgtv_v5_main/main.swf?play_type=1&video_id=' + video + '" allowFullScreen="true" quality="high" width="580" height="425" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
+                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                    + '<embed src="https://player.mgtv.com/mgtv_v5_main/main.swf?play_type=1&video_id=' + video + '" allowFullScreen="true" quality="high" width="100%" height="100%" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
                     + '</div>';
 
             }
@@ -209,8 +209,8 @@ module.exports = {
                     return '<p><a href="' + url + '">PPTV video link</a></p>';
                 }
 
-                return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                    + '<embed src="http://player.pptv.com/v/' + video + '.swf" quality="high" width="' + width + '" height="' + height + '" bgcolor="#000" align="middle" allowScriptAccess="always" allownetworking="all" allowfullscreen="true" type="application/x-shockwave-flash" wmode="direct" />'
+                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                    + '<embed src="http://player.pptv.com/v/' + video + '.swf" quality="high" width="100%" height="100%" bgcolor="#000" align="middle" allowScriptAccess="always" allownetworking="all" allowfullscreen="true" type="application/x-shockwave-flash" wmode="direct" />'
                     + '</div>';
             }
         },
@@ -232,8 +232,8 @@ module.exports = {
                     return '<p><a href="' + url + '">Acfun video link</a></p>';
                 }
 
-                return '<div style="position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;">'
-                    + '<iframe style="width:' + width + 'px;height:' + height + 'px;" src="http://cdn.aixifan.com/player/ACFlashPlayer.out.swf?vid=' + vid + '&ref=' + url + '" id="ACFlashPlayer-re" frameborder="0"></iframe>'
+                return '<div style="position: relative;margin-top: 20px;margin-bottom: 20px;width: 100%;height: ' + height + 'px;max-width: ' + width + 'px;">'
+                    + '<iframe style="width: 100%;height: 100%;" src="http://cdn.aixifan.com/player/ACFlashPlayer.out.swf?vid=' + vid + '&ref=' + url + '" id="ACFlashPlayer-re" frameborder="0"></iframe>'
                     + '</div>';
 
             }
