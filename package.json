@@ -2,7 +2,7 @@
     "name": "gitbook-plugin-chinese-video",
     "description": "A plugin for inserting a video, hosted by Chinese video website, into your web book.",
     "main": "index.js",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "engines": {
         "gitbook": ">1.x.x"
     },
