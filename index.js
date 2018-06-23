@@ -39,7 +39,7 @@ module.exports = {
             };
 
             if (scriptStr != "") {
-                scriptStr = "var fc=function(){var globalWidth=document.body.clientWidth-32;" + scriptStr + '};var oldonload=window.onload;if(typeof window.onload!="function"){window.onload=fc;}else{window.onload=function(){oldonload();fc();}};window.onresize=fc;';
+                scriptStr = "var fc=function(){var globalWidth=document.body.clientWidth-32;" + scriptStr + '};var oneSecond=1000*2;setInterval(fc,oneSecond);';
 
                 //replace
                 page.content = page.content + "<script>" + scriptStr + "</script>";
