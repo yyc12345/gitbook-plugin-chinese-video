@@ -294,6 +294,7 @@ module.exports = {
                 return '<embed plugin-width="' + width + '" plugin-height="' + height + '" name="pp-' + s.join("") + '" style="margin-top: 20px;margin-bottom: 20px;" src="http://player.pptv.com/v/' + video + '.swf" quality="high" bgcolor="#000" align="middle" allowScriptAccess="always" allownetworking="all" allowfullscreen="true" type="application/x-shockwave-flash" wmode="direct" />';
             }
         },
+        /*
         acfun: {
             process: function (block) {
                 var pair = block.body.trim().split('@');
@@ -322,6 +323,7 @@ module.exports = {
 
             }
         },
+        */
         teji: {
             process: function (block) {
                 return block.body;
