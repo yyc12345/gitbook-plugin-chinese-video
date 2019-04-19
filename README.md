@@ -2,6 +2,12 @@
 
 This is a plugin for gitbook. It can display some video on your web book. Some existed plugins only support the website which couldn't be visited in China. This plugin will support some video websites which is famous in China.
 
+## Abandoned repository announcement
+
+I have archived this repository due to [Gitbook decides to shutdown gitbook CLI](https://docs.gitbook.com/v2-changes/important-differences). I sincerely apologize to you if my decision interupts your some plans or projects. I have read gitbook's article and feel so regretful for its decision. Now, I couldn't visit official gitbook plugin website and I am not sure whether this plugin can work again in gitbook CLI. Archiving this repository mean that **I don't provide any upgrade or fix any bugs** from now. But **I will keep [the npm package](https://www.npmjs.com/package/gitbook-plugin-chinese-video)**. You can use it freely.
+
+Thank you for your interest in my project. See you next time.
+
 ## Install
 
 Add the below to your `book.json` file, then run `gitbook install` :
